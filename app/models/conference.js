@@ -19,6 +19,7 @@ var ConferenceSchema = new Schema({
 
 });
 
+//Saving data to db
 ConferenceSchema.pre('save', true, function(next, done) {
   // calling next kicks off the next middleware in parallel
   next();
