@@ -25,7 +25,7 @@ ConferenceSchema.pre('save', true, function(next, done) {
   setTimeout(done, 100);
 });
 
-
+// Find Conf
 ConferenceSchema.statics.findConferenceByTopic = function (id,cb) {
   console.log("topic inside db:" + id);
   this.find({ topic: id },cb);
