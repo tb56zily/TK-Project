@@ -1,0 +1,19 @@
+<html>
+<form method="get" > 
+<label>Submission Status:</label> 
+<select ng-model="submission.status " ng-options="x for x in names">
+ <option value="option-1">All</option>
+ <option value="option-2">Open</option>
+</select><br>
+</form>
+<h3>Select Submission topic to Open/Edit</h3>
+<form method="post" > 
+<button type="submit" class="btn btn-primary" ng-click="addMySub()">Add Submission</button><br>
+<div ng-repeat="submission in mySubmissions track by submission.id">
+<input type="checkbox" ng-model="submission.id" ng-true-value="'NO'" ng-false-value="'NO'">
+  {{submission.title}}
+</div><br>
+<button type="submit" class="btn btn-primary" ng-click="openSub()">Open to View </button>
+<button type="submit" class="btn btn-primary" ng-click="withdrawSub()">Withdraw Submission</button>
+</form>
+</html>

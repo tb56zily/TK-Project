@@ -1,0 +1,12 @@
+<html>
+<form method="get" > 
+<label>All Submissions Assigned to me for Review:</label> 
+<div ng-repeat="submission in submissionsToReview track by subsToReview.id">
+<input type="checkbox" ng-model="subsToReview.id" ng-true-value="'NO'" ng-false-value="'NO'">
+  {{subsToReview.title}}
+</div><br>
+<button type="submit" class="btn btn-primary" ng-click="viewSub()">Open to View </button>
+<button type="submit" class="btn btn-primary" ng-click="reviewSub()">Make a Review</button>
+<button type="submit" class="btn btn-primary" ng-click="editMyReview()">Edit Review</button>
+</form>
+</html>
