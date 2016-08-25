@@ -39,6 +39,7 @@ SubmissionSchema.statics.findAllSubmittedUsers = function (cb) {
   this.distinct('username');
 };
 
+//
 SubmissionSchema.statics.removeSubmissionById = function (subId, cb) {
   this.remove( { _id:subId },cb);
 };
