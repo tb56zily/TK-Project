@@ -2,7 +2,6 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt');
 
-
 // set up a mongoose model
 var ConferenceSchema = new Schema({
 
@@ -19,17 +18,16 @@ var ConferenceSchema = new Schema({
 
 });
 
-//Saving data to db
+//Saving conference to db
 ConferenceSchema.pre('save', true, function(next, done) {
   // calling next kicks off the next middleware in parallel
   next();
   setTimeout(done, 100);
 });
 
-// Find Conf
-ConferenceSchema.statics.findConferenceByTopic = function (id,cb) {
-  console.log("topic inside db:" + id);
-  this.find({ topic: id },cb);
+// Find All Conferfences
+ConferenceSchema.statics.getAllConferences = function (cb) {
+  this.find({},cb);
 };
 
 module.exports = mongoose.model('Conference', ConferenceSchema);
