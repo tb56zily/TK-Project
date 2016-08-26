@@ -19,17 +19,8 @@ var UserSchema = new Schema({
   country:{type: String, required: true,  trim: true},
   state: {type: String, required: true,  trim: true},
 
-
-  name: {
-        type: String,
-        unique: true,
-        required: true
-    },
-  password: {
-        type: String,
-        required: true
-    }
-
+  isReviewer: {type: Boolean, default: false},
+  isChair: {type: Boolean, default: false}
 });
 
 UserSchema.pre('save', function (next) {
@@ -59,6 +50,14 @@ UserSchema.methods.comparePassword = function (passw, cb) {
         }
         cb(null, isMatch);
     });
+};
+
+UserSchema.statics.getAllChair = function (cb) {
+  this.find({isChair:true},cb);
+};
+
+UserSchema.statics.getAllReviewers = function (cb) {
+  this.find({isReviewer:true},cb);
 };
 
 module.exports = mongoose.model('User', UserSchema);
