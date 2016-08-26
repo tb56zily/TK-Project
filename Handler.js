@@ -360,6 +360,32 @@ function uploadFile(req,res){
                   }
             }
 
+            //Fetch all the Authors
+            function getAllChair(req,res){
+                   Conference.getAllChair(function(err, listChair) {
+                     console.log("listChair data:" + listChair);
+                       if (err) throw err;
+                       if (!listChair) {
+                         return res.status(403).send({success: false, msg: 'No records found.'});
+                       } else {
+                         res.json({success: true, msg: 'Records found for user ' + listChair + '!'});
+                       }
+                   });
+             }
+
+             //Fetch all the Reviewers
+             function getAllReviewers(req,res){
+                    Conference.getAllReviewers(function(err, listReviewers) {
+                      console.log("listReviewers data:" + listReviewers);
+                        if (err) throw err;
+                        if (!listReviewers) {
+                          return res.status(403).send({success: false, msg: 'No records found.'});
+                        } else {
+                          res.json({success: true, msg: 'Records found for user ' + listReviewers + '!'});
+                        }
+                    });
+              }
+
 // connect the api routes under /api/*
 exports.homepage=home;
 exports.signup=signup;
