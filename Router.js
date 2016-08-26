@@ -95,6 +95,16 @@ var requestHandler = require("./Handler");
      requestHandler.getAllSubmittedUsers(req,res);
      });
 
+     app.get('/getAllChair',function(req,res){
+    //res.send("Unbowed , unbent , unbroken");
+     requestHandler.getAllChair(req,res);
+     });
+
+     app.get('/getAllReviewers',function(req,res){
+    //res.send("Unbowed , unbent , unbroken");
+     requestHandler.getAllReviewers(req,res);
+     });
+
   }
 
 	//console.log("About to route a request for " + pathname);
