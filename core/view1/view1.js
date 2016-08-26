@@ -6,7 +6,40 @@ angular.module('myApp.view1', ['ngRoute'])
   $routeProvider.when('/view1', {
     templateUrl: 'view1/view1.html',
     controller: 'View1Ctrl'
+  })
+  .when('/registerUser', {
+    templateUrl: 'view1/userRegistration.html',
+    controller: 'View1Ctrl'
+  })
+  .when('/editProfile', {
+    templateUrl: 'view1/editProfile.html',
+    controller: 'View1Ctrl'
+  })
+  .when('/mySubmissions', {
+    templateUrl: 'view1/allMySubmissions.html',
+    controller: 'View1Ctrl'
+  })
+  .when('/newSubmission', {
+    templateUrl: 'view1/addNewSubmForm.html',
+    controller: 'View1Ctrl'
+  })
+  .when('/allSubmissions', {
+    templateUrl: 'view1/allSubmissions.html',
+    controller: 'View1Ctrl'
+  })
+  .when('/users', {
+    templateUrl: 'view1/allUsers.html',
+    controller: 'View1Ctrl'
+  })
+  .when('/review', {
+    templateUrl: 'view1/makeReviewForm.html',
+    controller: 'View1Ctrl'
+  })
+  .when('/userLogin', {
+    templateUrl: 'view1/userLogin.html',
+    controller: 'View1Ctrl'
   });
+
 }])
 
 .controller('View1Ctrl', ['$scope', '$http', function($scope, $http) {
