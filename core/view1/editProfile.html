@@ -1,0 +1,44 @@
+<html>
+	<body>
+		<h1>Edit your profile</h1>
+		<form method="post">
+	  <label>Address Line1</label><input type="text" ng-model="user.address" placeholder="address" />
+      <label>Address Line2</label><input type="text" ng-model="user.address" placeholder="address" />
+      <label>Address Line3</label><input type="text" ng-model="user.address" placeholder="address" />
+      <label>Institute</label><input type="text" ng-model="user.institute" placeholder="institute" /><br>
+      <label>Country</label><select ng-model="user.country">
+  <option value="USA">USA</option>
+  <option value="Germany">Germany</option>
+  <option value="Brazil">Brazil</option>
+  <option value="Haiti">Haiti</option>
+  <option value="Slutland">Slutland</option>
+      </select>
+      <label>State</label><select ng-model="user.state">
+  <option value="Hessen">Hessen</option>
+  <option value="Bremen">Bremen</option>
+  <option value="Bavaria">Bavaria</option>
+  <option value="Rhineland">Rhineland</option>
+  <option value="Berlin">Berlin</option>
+      </select><br>
+      
+      <label>City</label><select ng-model="user.city">
+  <option value="Darmstadt">Darmstadt</option>
+  <option value="Dieburg">Dieburg</option>
+  <option value="Frankfurt">Frankfurt</option>
+  <option value="Gros Umstadt">Gros Umstadt</option>
+  <option value="Heidelberg">Heidelberg</option>
+      </select><br>
+      
+   <h2>Change Password</h2>
+	    <label>oldPassword</label><input type="password" ng-model="user.password" placeholder="old password" /><br>
+	    <label>New Password</label><input type="password" ng-model="user.password" placeholder="New password" /><br>
+        <label>Confirm Password</label><input type="password" placeholder="New Password" /><br>   		
+        
+        <button type="submit" class="btn btn-primary" ng-click="Save()">Save</button>
+        <button type="submit" class="btn btn-primary" ng-click="cancel()">Cancel</button>
+        
+        	
+		</form>
+	</body>
+	
+</html>
