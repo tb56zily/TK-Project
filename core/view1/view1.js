@@ -136,5 +136,31 @@ $scope.addTopic = function() {
       });
     }
 
+    $scope.getAllChair = function() {
+      $http({
+        url: '/getAllChair',
+        method: "GET"
+      }, {
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }).success(function(data, status, headers, config) {
+        console.log(data)
+      });
+    }
+
+    $scope.getAllReviewers = function() {
+      $http({
+        url: '/getAllReviewers',
+        method: "GET"
+      }, {
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }).success(function(data, status, headers, config) {
+        console.log(data)
+      });
+    }
+
 
 }]);
