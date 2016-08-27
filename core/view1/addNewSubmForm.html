@@ -1,29 +1,40 @@
-<html>
-<form method="post" > 
-<label>Conference Title:</label> 
-<select ng-model="submission.conferenceId" ng-options="x for x in names">
- 	 <option value="option-1">Option 1</option>
-     <option value="option-2">Option 2</option>
-</select><br>
+  <html>
 
-<label>Submission Title</label>
-<input type="text" ng-model="submission.title" placeholder="Enter title" /><br>
-<label>Authors (multiple authors id added using plus button):</label>
-<input type="text" ng-model="submission.authors" placeholder="Enter authors" /><br>
-<label>Abstract:</label>
-<textarea ng-model="submission.abstract" placeholder="Enter abstract" ></textarea><br>
-<label>Keywords: </label>
-<select ng-model="submission.keywords" ng-options="x for x in names">
-	<option value="option-1">NetSec</option>
-    <option value="option-2">Networks</option>
-    <option value="option-2">SDN</option>
-</select><br>
-<button type="submit" class="btn btn-primary" ng-click="addMySub()">Submit</button>
-</form>
-<label>Upload File: </label>
-<form method="POST" enctype="multipart/form-data" action="uploadFile">
-                <input type="file" name="filefield"><br/><br>
-                <input type="submit">
-</form>
 
-</html>
+
+  <table>
+    <tr >
+        <th align="left">
+      <form method="post" >
+        <label>Conference Title:</label>
+        <select ng-model="submission.conferenceId" >
+          <option value="option-1">Option 1</option>
+          <option value="option-2">Option 2</option>
+        </select><br>
+
+        <label>Submission Title</label>
+        <input type="text" ng-model="submission.title" placeholder="Enter title" /><br>
+        <label>Authors(multiple):</label>
+        <input type="text" ng-model="submission.authors" placeholder="Enter authors" /><br>
+        <label>Abstract:</label>
+        <textarea ng-model="submission.abstract" placeholder="Enter abstract" ></textarea><br>
+        <label>Keywords: </label>
+        <select ng-model="submission.keywords" >
+          <option value="option-1">NetSec</option>
+          <option value="option-2">Networks</option>
+          <option value="option-2">SDN</option>
+        </select><br>
+        <button type="submit" class="btn btn-primary" ng-click="addMySub()">Submit</button>
+      </form>
+    </th>
+      <th align="left">
+      <label>Upload File: </label>
+      <form method="POST" enctype="multipart/form-data" action="uploadFile">
+        <input type="file" name="filefield" onchange="this.form.submit()"/><br/><br>
+      </form>
+    </th>
+    </tr>
+  </table>
+
+
+  </html>
