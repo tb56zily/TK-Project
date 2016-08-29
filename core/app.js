@@ -32,6 +32,16 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
     templateUrl: 'signup/signup.html',
     controller: 'SignupCtrl'
   })
+  .
+  when('/editProfile/', {
+    templateUrl: 'my account/editProfile.html',
+    //controller: 'SignupCtrl'
+  })
+  .
+  when('/resetPassword/', {
+    templateUrl: 'my account/newPassword.html',
+    //controller: 'SignupCtrl'
+  })
   .when('/mySubmissions', {
     templateUrl: 'authors/allMySubmissions.html',
     controller: 'AuthorCtrl'
