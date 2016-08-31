@@ -1,26 +1,22 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt');
+var autoIncrement = require('mongoose-auto-increment');
 
 
 // set up a mongoose model
 var UserSchema = new Schema({
-
-  _id:{ type: Number ,  unique: true  },
-  username: { type: String, required: true, lowercase: true, trim: true, index: { unique: true } },
   password: {type: String, required: true,  trim: true},
-  email: {type: String, required: true,  lowercase: true, trim: true},
-  role:{type: String, required: true,  lowercase: true,  trim: true},
+  email: {type: String, required: true,  lowercase: true, trim: true, unique: true},
   firstname:{type: String, required: true,  trim: true},
   lastname: {type: String, required: true,  trim: true},
   address :{type: String, required: true,  trim: true},
   institute:{type: String, required: true,  trim: true},
   city:{type: String, required: true,  trim: true},
   country:{type: String, required: true,  trim: true},
-  state: {type: String, required: true,  trim: true},
-
+  postCode: {type: Number, required: true,  trim: true},
   isReviewer: {type: Boolean, default: false},
-  isChair: {type: Boolean, default: false}
+  isChair: {type: Boolean, default: true}
 });
 
 UserSchema.pre('save', function (next) {
@@ -32,11 +28,14 @@ UserSchema.pre('save', function (next) {
             }
             bcrypt.hash(user.password, salt, function (err, hash) {
                 if (err) {
+                    console.log(err)
                     return next(err);
+
                 }
                 user.password = hash;
                 next();
             });
+
         });
     } else {
         return next();
@@ -60,4 +59,5 @@ UserSchema.statics.getAllReviewers = function (cb) {
   this.find({isReviewer:true},cb);
 };
 
+UserSchema.plugin(autoIncrement.plugin, 'User');
 module.exports = mongoose.model('User', UserSchema);

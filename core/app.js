@@ -14,7 +14,7 @@ angular.module('myApp', [
 
   'myApp.version'
 ]).
-config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
+config(['$locationProvider', '$routeProvider','$httpProvider','localStorageServiceProvider', function($locationProvider, $routeProvider, $httpProvider,localStorageServiceProvider) {
   $routeProvider.
   when('/view1/', {
     templateUrl: 'view1/view1.html',
@@ -68,7 +68,12 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
   })
   .otherwise('/view1');
 
+
   $locationProvider.html5Mode(true);
+  localStorageServiceProvider.setStorageType('sessionStorage')
+
+  $httpProvider.interceptors.push('myHttpInterceptor');
+
 
 
 

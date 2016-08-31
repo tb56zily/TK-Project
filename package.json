@@ -28,7 +28,8 @@
     "connect-busboy":"0.0.2",
     "fs-extra":"0.30.0",
     "method-override":"2.3.6",
-    "connect-flash" : "*"
+    "connect-flash" : "*",
+    "mongoose-auto-increment":"*"
   },
   "scripts": {
     "postinstall": "bower install",

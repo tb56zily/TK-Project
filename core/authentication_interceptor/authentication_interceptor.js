@@ -1,21 +1,22 @@
-angular.module('app')
-    .factory('AuthenticationInterceptor', ['$q', '$injector', '$rootScope', '$location', 'localStorageService', function ($q, $injector, $rootScope, $location, localStorageService) {
-      return {
-        request: function (pConfig) {
-          var session = localStorageService.get('session');
-          if (session) {
-            $rootScope['login'] = {id: 'present'};
-            pConfig.headers.Authorization = session.auth;
-            pConfig.headers['TWTOKEN'] = session.id;
-          } else {
-            var url = pConfig.url;
-            if (url.indexOf('http') != 0 && url != '/login/login.html'
-                && url != '/partials/signup.html') {
+angular.module('myApp')
+  .factory('myHttpInterceptor', ['$q', '$injector', '$rootScope', '$location', 'localStorageService', function ($q, $injector, $rootScope, $location, localStorageService) {
+    return {
+           request: function(config){
+             var session = localStorageService.get('session');
+             if (session) {
+              config.headers.token=session.token
+              console.log(config)
+             }
+             else {
+               var url = config.url;
+               console.log(url)
+               if (url.indexOf('http') != 0 && url != 'signup/signup.html')
+                $location.url("/login/");
+             }
 
-              $location.url("/dashboard/login");
+
+             console.log('Request started'); // LOG AT REQUEST START
+             return config || $q.when(config);
             }
-          }
-          return pConfig;
-        }
-      };
-    }]);
+    };
+}]);
