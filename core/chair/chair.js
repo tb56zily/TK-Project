@@ -45,5 +45,19 @@ angular.module('myApp.chair', ['ngRoute']).controller('ChairCtrl', [
         console.log(data)
       });
     }
+
+    $scope.assignReviewer = function() {
+      console.log("inside assignReviewer")
+      $http({
+        url: '/assignReviewer',
+        method: "POST",
+        data: $scope.review
+      }, {
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }).success(function(data, status, headers, config) {
+      });
+    }
 }
 ]);

@@ -100,8 +100,8 @@ var requestHandler = require("./Handler");
      requestHandler.getAllSubmittedUsers(req,res);
      });
 
-     app.post('/submitReview',function(req,res){
-     requestHandler.submitReview(req,res);
+     app.post('/assignReviewer',function(req,res){
+     requestHandler.assignReviewer(req,res);
      });
 
   }

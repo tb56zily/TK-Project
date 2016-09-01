@@ -63,6 +63,10 @@ config(['$locationProvider', '$routeProvider','$httpProvider','localStorageServi
     templateUrl: 'chair/allSubmissions.html',
     controller: 'ChairCtrl'
   })
+  .when('/assignReviewer', {
+    templateUrl: 'chair/chair.html',
+    controller: 'ChairCtrl'
+  })
   .when('/users', {
     templateUrl: 'chair/allUsers.html',
     controller: 'ChairCtrl'

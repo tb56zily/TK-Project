@@ -2,6 +2,27 @@
 <form method="post" >
   <label>File to Review:</label>
   <a href="sumission.file"></a><br>
+
+<!-- </br>
+Choose expertise:
+<table>
+        <tr ng-repeat="expertise in expertiseArray">
+            <td>
+              <input type="radio"
+                     ng-model="$parent.currentExpertise"
+                     name="reviewer_experties"
+                     ng-value="expertise"
+                     id="{{expertise.id}}"
+                     >
+              {{expertise.name}}
+            </td>
+            </td>
+        </tr>
+</table>
+</br> -->
+
+
+
   <label>Review Expertise:</label>
   <label>
     <input type="radio" name="reviewer_experties" ng-model="reviewer_experties" ng-value="Not_familiar">

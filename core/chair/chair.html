@@ -18,7 +18,7 @@
     <th>Comments</th>
     <th>File pdf</th>
   </tr>
-  
+
   <tr>
     <td>Alfreds Futterkiste</td>
     <td>Maria Anders</td>
@@ -28,6 +28,11 @@
     <td>Germany</td>
   </tr>
 </table>
+
+sample UI to Assign reviewer to a submission
+<input type="text" id="sId" placeholder="enter submission id" ng-model="review.submission_id">
+<input type="text" id="rId" placeholder="enter reviewer user id" ng-model="review.assignment_id">
+  <button type="submit" class="btn btn-primary" ng-click="assignReviewer()">assignReviewer</button>
 </form>
 </body>
 </html>
