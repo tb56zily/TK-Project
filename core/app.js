@@ -11,6 +11,7 @@ angular.module('myApp', [
   'myApp.signup',
   'myApp.author',
   'myApp.chair',
+  'myApp.reviewer',
 
   'myApp.version'
 ]).
@@ -42,21 +43,21 @@ config(['$locationProvider', '$routeProvider','$httpProvider','localStorageServi
     templateUrl: 'my account/newPassword.html',
     //controller: 'SignupCtrl'
   })
-  .when('/mySubmissions', {
+  .when('/mySubmissions/', {
     templateUrl: 'authors/allMySubmissions.html',
     controller: 'AuthorCtrl'
   })
-  .when('/newSubmission', {
+  .when('/newSubmission/', {
     templateUrl: 'authors/addNewSubmForm.html',
     controller: 'AuthorCtrl'
   })
-  .when('/reviewSubmissions', {
+  .when('/reviewSubmissions/', {
     templateUrl: 'authors/submissionsToReview.html',
     controller: 'AuthorCtrl'
   })
-  .when('/review', {
+  .when('/review/', {
     templateUrl: 'reviewer/makeReviewForm.html',
-    controller: 'AuthorCtrl'
+    controller: 'ReviewerCtrl'
   })
   .when('/allSubmissions', {
     templateUrl: 'chair/allSubmissions.html',

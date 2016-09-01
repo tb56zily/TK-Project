@@ -24,6 +24,7 @@ autoIncrement.initialize(mongoose.connection);
 var User        = require('./app/models/user'); // get the mongoose model
 var Submission  = require('./app/models/submission'); // get the mongoose model
 var Conference  = require('./app/models/conference'); // get the mongoose model
+var Review  = require('./app/models/review'); // get the mongoose model
 
 
 
@@ -482,6 +483,8 @@ exports.getAllConferences=getAllConferences;
 exports.getAllSubmissions=getAllSubmissions;
 exports.withdrawSubmissionById=withdrawSubmissionById;
 exports.getAllSubmittedUsers=getAllSubmittedUsers;
+exports.submitReview=submitReview;
+
 /*data: JSON.stringify({
   'name': "Adnan",
   'password': "$2a$10$qLTiADlQW.8Qor7/DvEPyeVL2f4BiO95dHzvq9EpXYwvEnzjIQgi6"

@@ -26,7 +26,7 @@ angular.module('myApp.login', ['ngRoute']).controller('LoginCtrl', [
         }
       }).success(function(data, status, headers, config) {
         localStorageService.set("session", data);
-        
+
       })
     };
   }

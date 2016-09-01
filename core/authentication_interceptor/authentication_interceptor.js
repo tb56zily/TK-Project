@@ -8,10 +8,10 @@ angular.module('myApp')
               console.log(config)
              }
              else {
-               var url = config.url;
-               console.log(url)
-               if (url.indexOf('http') != 0 && url != 'signup/signup.html')
-                $location.url("/login/");
+              //  var url = config.url;
+              //  console.log(url)
+              //  if (url.indexOf('http') != 0 && url != 'signup/signup.html')
+              //   $location.url("/login/");
              }
 
 

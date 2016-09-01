@@ -1,50 +1,50 @@
 <html>
-<form method="post" > 
-<label>File to Review:</label> 
-<a href="sumission.file"></a><br>
-<label>Review Expertise:</label>
- <label>
-    <input type="radio" ng-model="reviewer_experties" ng-value="Not_familiar">
+<form method="post" >
+  <label>File to Review:</label>
+  <a href="sumission.file"></a><br>
+  <label>Review Expertise:</label>
+  <label>
+    <input type="radio" name="reviewer_experties" ng-model="reviewer_experties" ng-value="Not_familiar">
     Not_familiar
   </label><br/> <label>
-    <input type="radio" ng-model="reviewer_experties" ng-value="Familiar">
+    <input type="radio" name="reviewer_experties" ng-model="reviewer_experties" ng-value="Familiar">
     Familiar
   </label><br/> <label>
-    <input type="radio" ng-model="reviewer_experties" ng-value="Intermediate">
+    <input type="radio" name="reviewer_experties"  ng-model="reviewer_experties" ng-value="Intermediate">
     Intermediate
   </label><br/> <label>
-    <input type="radio" ng-model="reviewer_experties" ng-value="advanced">
+    <input type="radio" name="reviewer_experties" ng-model="reviewer_experties" ng-value="advanced">
     Green
   </label><br/> <label>
-    <input type="radio" ng-model="reviewer_experties" ng-value="Expert">
+    <input type="radio" name="reviewer_experties" ng-model="reviewer_experties" ng-value="Expert">
     Expert
   </label><br>
   <label>Overall Evaluation:</label>
- <label>
-    <input type="radio" ng-model="overall_evaluation" ng-value="Not_familiar">
+  <label>
+    <input type="radio" name="overall_evaluation" ng-model="review.revExp" ng-value="Not_familiar">
     Strongly Reject
   </label><br/> <label>
-    <input type="radio" ng-model="overall_evaluation" ng-value="Familiar">
+    <input type="radio" name="overall_evaluation" ng-model="review.revExp" ng-value="Familiar">
     Reject
   </label><br/> <label>
-    <input type="radio" ng-model="overall_evaluation" ng-value="Intermediate">
+    <input type="radio" name="overall_evaluation" ng-model="review.revExp" ng-value="Intermediate">
     Intermediate
   </label><br/> <label>
-    <input type="radio" ng-model="overall_evaluation" ng-value="advanced">
+    <input type="radio" name="overall_evaluation" ng-model="review.revExp" ng-value="advanced">
     Somewhat Accept
   </label><br/> <label>
-    <input type="radio" ng-model="overall_evaluation" ng-value="Expert">
+    <input type="radio" name="overall_evaluation" ng-model="review.revExp" ng-value="Expert">
     Strongly Accept
   </label><br>
-<label>Summary(limited to 100 characters):</label>
-<textarea ng-model="review.summary" placeholder="Enter Summary" ></textarea><br>
-<label>Major Strong Points(limited to 100 characters):</label>
-<textarea ng-model="review.major_strong_points" placeholder="Enter Major strong points"></textarea><br>
-<label>Major Week Points(limited to 100 characters):</label>
-<textarea ng-model="review.major_week_points"  placeholder="Enter Major week points"></textarea><br>
-<label>Detailed Comments(limited to 100 characters):</label>
-<textarea ng-model="review.detailed_comments"  placeholder="Enter detailed comments"></textarea><br>
-<button type="submit" class="btn btn-primary" ng-click="submitReview()">Submit</button>
-<button type="submit" class="btn btn-primary" ng-click="cancelReview()">Cancel</button>
+  <label>Summary(limited to 100 characters):</label>
+  <textarea ng-model="review.summary" placeholder="Enter Summary" ></textarea><br>
+  <label>Major Strong Points(limited to 100 characters):</label>
+  <textarea ng-model="review.major_strong_points" placeholder="Enter Major strong points"></textarea><br>
+  <label>Major Week Points(limited to 100 characters):</label>
+  <textarea ng-model="review.major_week_points"  placeholder="Enter Major week points"></textarea><br>
+  <label>Detailed Comments(limited to 100 characters):</label>
+  <textarea ng-model="review.detailed_comments"  placeholder="Enter detailed comments"></textarea><br>
+  <button type="submit" class="btn btn-primary" ng-click="submitReview()">Submit</button>
+  <button type="submit" class="btn btn-primary" ng-click="cancelReview()">Cancel</button>
 </form>
 </html>
