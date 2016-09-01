@@ -38,6 +38,22 @@ angular.module('myApp.author', ['ngRoute']).controller('AuthorCtrl', [
       });
     }
 
+    //Get Submission By Id
+    $scope.getSubmissionById = function() {
+      $http({
+        url: '/getSubmissionById',
+        method: "GET",
+        params: {_id:'2'}
+      }, {
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }).success(function(data, status, headers, config) {
+        console.log(data)
+      });
+    }
+
+
     //Get all my Submissions
     $scope.getMySubmissions = function() {
       $http({

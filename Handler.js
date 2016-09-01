@@ -193,199 +193,241 @@ console.log("We are inside the authenticate function");
     };
 
 
-function uploadFile(req,res){
-  console.log("inside uploadFile");
-  if (req.method === 'POST') {
-      var busboy = new Busboy({ headers: req.headers });
-      busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
-         var newPath = path.join(__dirname, '/upload/');
-         var newPath = './public/';
-         if (!fs.existsSync(newPath)){
+    function uploadFile(req,res){
+      console.log("inside uploadFile");
+      if (req.method === 'POST') {
+        var busboy = new Busboy({ headers: req.headers });
+        busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
+          var newPath = path.join(__dirname, '/upload/');
+          var newPath = './uploads/';
+          if (!fs.existsSync(newPath)){
             fs.mkdirSync(newPath);
           }
-        file.pipe(fs.createWriteStream(newPath + filename));
-        console.log("Saved File to:" +newPath);
-      });
-      busboy.on('finish', function() {
-        res.writeHead(200, { 'Connection': 'close' });
-        res.end("File uploaded successfully!");
-      });
-      return req.pipe(busboy);
-    }
-    res.writeHead(404);
-    res.end();
-}
-
-      // Submission function
-      function addNewSubmission(req,res){
-
-          if (!req.body.title) {
-            console.log("No titlerecieved");
-            res.json({success: false, msg: 'Please pass title.'});
-          }
-          else {
-            var newSubmission = new Submission({
-              _id:2,// make this auto inc
-              title: req.body.title,
-              authors : req.body.authors,
-              abstract: req.body.abstract,
-              keywords:req.body.keywords,
-              filename:req.body.filename,
-              last_name: req.body.last_name,
-              status :req.body.status,
-              conferenceId:req.body.conferenceId,
-              username:req.body.username
-            });
-            // save the submission
-            newSubmission.save(function(err) {
-              if (err) {
-                return res.json({success: false, msg: 'error submitting'});
-              }
-              res.json({success: true, msg: 'Successful submission.'});
-            });
-          }
+          file.pipe(fs.createWriteStream(newPath + 'userName'));
+          console.log("uploaded File with Username, to directory:" +newPath);
+        });
+        busboy.on('finish', function() {
+          res.writeHead(200, { 'Connection': 'close' });
+          //res.end("File uploaded Successfully!");
+        });
+        return req.pipe(busboy);
       }
+      res.writeHead(404);
+      res.end();
+    }
 
-      //Fetch all the conference and their details of a particular author
-       function getMySubmissions(req,res){
-        console.log("inside getMySubmissions method");
-        //   var token = getToken(req.headers);
-        // console.log("req.headers" + req.headers);
-        // console.log("token" + token);
-          // if (token) {
-          //  var decoded = jwt.decode(token, config.secret);
-            if(req.body.status){
-              console.log("inside getMySubmissions if method" + req.body.username);
-              Submission.find({username: req.body.username, status: req.body.status}, function(err, submission) {
-                  if (err) throw err;
-                  if (!submission) {
-                    return res.status(403).send({success: false, msg: 'No records found.'});
-                  } else {
-                    res.json({success: true, msg: 'Records found for user ' + submission + '!'});
-                  }
-              });
-            }else {
-              console.log("inside getMySubmissions else method" + req.query.username);
-              Submission.findSubmissionByUserName(req.query.username, function(err, submission) {
-                console.log("submission data:" + submission);
-                  if (err) throw err;
-                  if (!submission) {
-                    return res.status(403).send({success: false, msg: 'No records found.'});
-                  } else {
-                    res.json({success: true, msg: 'Records found for user ' + submission + '!'});
-                  }
-              });
-            }
-
-          // } else {
-          //   console.log("inside getMySubmissions token  else method" + req.body.username);
-          //   return res.status(403).send({success: false, msg: 'No token provided.'});
-          // }
-        }
-
-
-        // Submission function
-        function addNewConference(req,res){
-            if (!req.body.topic && !req.body.submStartDate && !req.body.reviewStartDate) {
-              console.log("Enter mandatory fields");
-              res.json({success: false, msg: 'Please pass all details.'});
-            }
-            else {
-              console.log(" addNewConference methoddddddddddd");
-              var newConference = new Conference({
-                _id : req.body._id,
-                topic: req.body.topic,
-                sub_status : req.body.sub_status,
-                review_status: req.body.review_status,
-                chair:req.body.chair,
-                detail:req.body.detail,
-                sub_start_date: req.body.sub_start_date,
-                sub_end_date :req.body.sub_end_date,
-                review_start_date:req.body.review_start_date,
-                review_end_date:req.body.review_end_date
-              });
-
-              // save the submission
-              newConference.save(function(err) {
-                if (err) {
-                  return res.json({success: false, msg: 'error submitting'});
-                }
-                res.json({success: true, msg: 'Successful submission.'});
-              });
-            }
-        }
-
-        //Fetch all the Topics opened by chair
-         function getAllConferences(req,res){
-          console.log("inside getAllConferences method");
-          //   var token = getToken(req.headers);
-          // console.log("req.headers" + req.headers);
-          // console.log("token" + token);
-            // if (token) {
-            //  var decoded = jwt.decode(token, config.secret);
-
-            var topic='sdsd';
-                Conference.findConferenceByTopic(topic, function(err, conference) {
-                  console.log("Conference topic:" + topic);
-                  console.log("Conference data:" + conference);
-                    if (err) throw err;
-                    if (!conference) {
-                      return res.status(403).send({success: false, msg: 'No records found.'});
-                    } else {
-                      res.json({success: true, msg: 'Records found for user ' + conference + '!'});
-                    }
-                });
-
-
-            // } else {
-            //   console.log("inside getMySubmissions token  else method" + req.body.username);
-            //   return res.status(403).send({success: false, msg: 'No token provided.'});
-            // }
+    // Adding new Submission of a user
+    function addNewSubmission(req,res){
+      console.log("Adding a new Submission..." + req.body.abstract);
+      if (!req.body.title) {
+        console.log("No titlerecieved");
+        res.json({success: false, msg: 'Please pass title.'});
+      }
+      else {
+        console.log("Creating a new Submission schema...");
+        var newSubmission = new Submission({
+          _id:2,// make this auto inc
+          title: req.body.title,
+          authors : req.body.authors,
+          abstract: req.body.abstract,
+          keywords:req.body.keywords,
+          filename:'filename',//req.body.filename,
+          last_name: 'lname',//req.body.last_name,
+          status :'open',//req.body.status,
+          conferenceId:req.body.conferenceId,
+          username:'username'//req.body.username
+        });
+        console.log("new sub obj:"+newSubmission);
+        // save the submission
+        newSubmission.save(function(err) {
+          console.log("Trying to save data to db...");
+          if (err) {
+            console.log("Error occurred!!Failed to save data to db...");
+            return res.json({success: false, msg: 'error submitting'});
           }
+          console.log("Saving data to db was Successful...");
+          res.json({success: true, msg: 'Successful submission.'});
+        });
+      }
+    }
 
-          //Fetch all the Topics opened by chair
-           function getAllSubmissions(req,res){
-            console.log("inside getAllConferences method");
-                    Submission.findAllSubmissions(function(err, submission) {
-                    console.log("All submissions data:" + submission);
-                      if (err) throw err;
-                      if (!submission) {
-                        return res.status(403).send({success: false, msg: 'No records found.'});
-                      } else {
-                        res.json({success: true, msg: 'Records found  ' + submission + '!'});
-                      }
-                  });
-            }
-
-            //Fetch all the authors who submitted
-             function getAllSubmittedUsers(req,res){
-              console.log("inside getAllSubmittedUsers method");
-                      Submission.findAllSubmittedUsers(function(err, authors) {
-                      console.log("All submissions Users:" + authors);
-                        if (err) throw err;
-                        if (!authors) {
-                          return res.status(403).send({success: false, msg: 'No records found.'});
-                        } else {
-                          res.json({success: true, msg: 'Records found  ' + authors + '!'});
-                        }
-                    });
-              }
+    //Fetch submission by id
+    function getSubmissionById(req,res){
+      console.log("Retrieving submission with id-"+req.query._id);
+       Submission.findSubmissionById(req.query._id, function(err, submission) {
+          console.log("submission data:" + submission);
+          if (err) throw err;
+          if (!submission) {
+            console.log("Error Retrieving submission with id-"+req.query._id);
+            return res.status(403).send({success: false, msg: 'No records found.'});
+          } else {
+            console.log("Successfully Retrieved submission with id-"+req.query._id);
+            res.json({success: true, msg: 'Records found for id ' + submission + '!'});
+          }
+        });
+    }
 
 
-            // withdrawSubmissionById function
-            function withdrawSubmissionById(req,res){
+    //Fetch all the submissions of a particular author
+    function getMySubmissions(req,res){
+      console.log("Retrieving all the submissions of user-"+req.query.username);
+      if(req.body.status){
+        console.log("with status="+req.body.status);
+        Submission.find({username: req.body.username, status: req.body.status}, function(err, submission) {
+          if (err) throw err;
+          console.log("Error Retrieving all the submissions of  user-"+req.query.username+"with status="+req.body.status);
+          if (!submission ||  submission==null) {
+            console.log("Error Retrieving all the submissions of  user-"+req.query.username+"with status="+req.body.status);
+            return res.status(403).send({success: false, msg: 'No records found.'});
+          } else {
+            console.log("Successfully Retrieved all the submissions of user-"+req.query.username+"with status="+req.body.status);
+            res.json({success: true, msg: 'Records found for user ' + submission + '!'});
+          }
+        });
+      }else {
+        Submission.findSubmissionByUserName(req.query.username, function(err, submission) {
+          console.log("submission data:" + submission);
+          if (err) throw err;
+          if (!submission) {
+            console.log("Error Retrieving all the submissions of  user-"+req.query.username);
+            return res.status(403).send({success: false, msg: 'No records found.'});
+          } else {
+            console.log("Successfully Retrieved all the submissions of  user-"+req.query.username);
+            res.json({success: true, msg: 'Records found for user ' + submission + '!'});
+          }
+        });
+      }
+    }
 
-                  console.log(" withdrawSubmissionById method");
-                  if(req.body._id){
-                    // remove  the submission
-                    submission.removeSubmissionById({_id: req.body._id},function(err) {
-                      if (err) {
-                        return res.json({success: false, msg: 'error removing'});
-                      }
-                      res.json({success: true, msg: 'Successful Removal of submission with ID:' + req.body._id});
-                    });
-                  }
-            }
+
+    // Adding new Conference topics
+    function addNewConference(req,res){
+      if (!req.body.topic && !req.body.submStartDate && !req.body.reviewStartDate) {
+        console.log("Enter mandatory fields");
+        res.json({success: false, msg: 'Please pass all details.'});
+      }
+      else {
+        console.log("Trying to add new Conference topic....");
+        var newConference = new Conference({
+          _id : req.body._id,
+          topic: req.body.topic,
+          sub_status : req.body.sub_status,
+          review_status: req.body.review_status,
+          chair:req.body.chair,
+          detail:req.body.detail,
+          sub_start_date: req.body.sub_start_date,
+          sub_end_date :req.body.sub_end_date,
+          review_start_date:req.body.review_start_date,
+          review_end_date:req.body.review_end_date
+        });
+
+        // save the conference to db
+        newConference.save(function(err) {
+          if (err) {
+            console.log("Error adding new Conference...");
+            return res.json({success: false, msg: 'error submitting'});
+          }
+          console.log("Successfully added new Conference...");
+          res.json({success: true, msg: 'Successful submission.'});
+        });
+      }
+    }
+
+    //Fetch all the conference topics opened by chair
+    function getAllConferences(req,res){
+      console.log("Trying to retrieving all the open conferences...");
+      var topic=req.body.topic;
+      Conference.findConferenceByTopic(topic, function(err, conference) {
+        if (err) throw err;
+        if (!conference) {
+          console.log("Error retrieving all the open conferences...");
+          return res.status(403).send({success: false, msg: 'No records found.'});
+        } else {
+          console.log("Successfully retrieved all the open conferences...");
+          res.json({success: true, msg: 'Records found for user ' + conference + '!'});
+        }
+      });
+    }
+
+    //Fetch all the submissions of all users
+    function getAllSubmissions(req,res){
+      console.log("Trying to retrieving all the submissions of all users...");
+      Submission.findAllSubmissions(function(err, submission) {
+        if (err) throw err;
+        if (!submission) {
+          console.log("Error retrieving all the submissions of all users...");
+          return res.status(403).send({success: false, msg: 'No records found.'});
+        } else {
+          console.log("Successfully retrieved all the submissions of all users...");
+          res.json({success: true, msg: 'Records found  ' + submission + '!'});
+        }
+      });
+    }
+
+    //Fetch all the active authors
+    function getAllSubmittedUsers(req,res){
+      console.log("Trying to retrieving all the active authors...");
+      Submission.findAllSubmittedUsers(function(err, authors) {
+        if (err) throw err;
+        if (!authors) {
+          console.log("Error retrieving all the active authors...");
+          return res.status(403).send({success: false, msg: 'No records found.'});
+        } else {
+          console.log("Successfully retrieved all the active authors...");
+          res.json({success: true, msg: 'Records found  ' + authors + '!'});
+        }
+      });
+    }
+
+
+    // withdrawSubmissionById function
+    function withdrawSubmissionById(req,res){
+      console.log("Trying to remove a submission ...");
+      if(req.query._id){
+        // remove  the submission
+        Submission.removeSubmissionById({_id: req.query._id},function(err) {
+          if (err) {
+            console.log("Error removing submission with submission Id:"+req.query._id);
+            return res.json({success: false, msg: 'error removing'});
+          }
+          console.log("Successfully removing submission with submission Id:"+req.query._id);
+          res.json({success: true, msg: 'Successful Removal of submission with ID:' + req.query._id});
+        });
+      }else{
+        console.log("unable to find the record");
+        return res.json({success: false, msg: 'unable to find the record'});
+      }
+    }
+
+    //Fetch all the Authors
+    function getAllChair(req,res){
+      console.log("Trying to retrieve all the chair persons...");
+      Conference.getAllChair(function(err, listChair) {
+        if (err) throw err;
+        if (!listChair) {
+          console.log("Error retrieving all the chair persons...");
+          return res.status(403).send({success: false, msg: 'No records found.'});
+        } else {
+          console.log("Successfully retrieved all the chair persons...");
+          res.json({success: true, msg: 'Records found for user ' + listChair + '!'});
+        }
+      });
+    }
+
+    //Fetch all the Reviewers
+    function getAllReviewers(req,res){
+      console.log("Trying to retrieve all the Reviewers...");
+      Conference.getAllReviewers(function(err, listReviewers) {
+        if (err) throw err;
+        if (!listReviewers) {
+          console.log("Error retrieving all the Reviewers...");
+          return res.status(403).send({success: false, msg: 'No records found.'});
+        } else {
+          console.log("Successfully retrieved all the Reviewers...");
+          res.json({success: true, msg: 'Records found for Reviewers' + listReviewers + '!'});
+        }
+      });
+    }
 
 
 
@@ -404,7 +446,6 @@ exports.getAllConferences=getAllConferences;
 exports.getAllSubmissions=getAllSubmissions;
 exports.withdrawSubmissionById=withdrawSubmissionById;
 exports.getAllSubmittedUsers=getAllSubmittedUsers;
-
 /*data: JSON.stringify({
   'name': "Adnan",
   'password': "$2a$10$qLTiADlQW.8Qor7/DvEPyeVL2f4BiO95dHzvq9EpXYwvEnzjIQgi6"

@@ -16,7 +16,8 @@ var UserSchema = new Schema({
   country:{type: String, required: true,  trim: true},
   postCode: {type: Number, required: true,  trim: true},
   isReviewer: {type: Boolean, default: false},
-  isChair: {type: Boolean, default: true}
+  isChair: {type: Boolean, default: true},
+  isActive: {type: Boolean, default: false}
 });
 
 UserSchema.pre('save', function (next) {

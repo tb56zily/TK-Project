@@ -66,6 +66,10 @@ var requestHandler = require("./Handler");
      requestHandler.uploadFile(req,res);
      });
 
+     app.get('/getSubmissionById',function(req,res){
+     requestHandler.getSubmissionById(req,res);
+     });
+
      app.get('/getMySubmissions',function(req,res){
     //res.send("Unbowed , unbent , unbroken");
      requestHandler.getMySubmissions(req,res);

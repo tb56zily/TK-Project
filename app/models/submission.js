@@ -31,6 +31,10 @@ SubmissionSchema.statics.findSubmissionByUserName = function (name, cb) {
   this.find({ username: name }, cb);
 };
 
+SubmissionSchema.statics.findSubmissionById = function (subId, cb) {
+  this.find({ _id:subId }, cb);
+};
+
 SubmissionSchema.statics.findAllSubmissions = function (cb) {
   this.find(cb);
 };
