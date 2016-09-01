@@ -430,6 +430,42 @@ console.log("We are inside the authenticate function");
     }
 
 
+    // Adding new Review of a submission
+    function submitReview(req,res){
+      console.log("Adding a new Review...");
+      if (!req.body.summary) {
+        console.log("No summary");
+        res.json({success: false, msg: 'Please pass summary.'});
+      }
+      else {
+        console.log("Creating a new Review schema...");
+        var newReview = new Review({
+          _id:2,// make this auto inc
+          assignment_id: req.body.assignment_id,
+          submission_id : req.body.submission_id,
+          reviewer_experties: req.body.reviewer_experties,
+          overall_evaluation:req.body.overall_evaluation,
+          summary:req.body.summary,
+          major_strong_points: req.body.major_strong_points,
+          major_weak_points :req.body.major_weak_points,
+          detailed_comments:req.body.detailed_comments,
+        });
+        console.log("new review:"+newReview);
+        // save the review
+        newReview.save(function(err) {
+          console.log("Trying to save data to db...");
+          if (err) {
+            console.log("Error occurred!!Failed to save data to db...");
+            return res.json({success: false, msg: 'error submitting'});
+          }
+          console.log("Saving data to db was Successful...");
+          res.json({success: true, msg: 'Successful review.'});
+        });
+      }
+    }
+
+
+
 
 // connect the api routes under /api/*
 exports.homepage=home;

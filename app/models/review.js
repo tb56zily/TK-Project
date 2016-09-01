@@ -15,7 +15,7 @@ var ReviewSchema = new Schema({
   overall_evaluation:{type: String, required: true,  lowercase: true,  trim: true},
   summary:{type: String, required: true,  trim: true},
   major_strong_points: {type: String, required: true,  trim: true},
-  major_strong_points :{type: String, required: true,  trim: true},
+  major_weak_points :{type: String, required: true,  trim: true},
   detailed_comments:{type: String, required: true,  trim: true},
 
 

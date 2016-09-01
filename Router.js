@@ -100,6 +100,10 @@ var requestHandler = require("./Handler");
      requestHandler.getAllSubmittedUsers(req,res);
      });
 
+     app.post('/submitReview',function(req,res){
+     requestHandler.submitReview(req,res);
+     });
+
   }
 
 	//console.log("About to route a request for " + pathname);
