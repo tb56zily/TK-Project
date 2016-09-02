@@ -21,40 +21,40 @@ Choose expertise:
 </table>
 </br> -->
 
-
-
+<!-- table id of review table which will be sent to update for where condition -->
+ <input type="hidden" ng-model="review._id" ng-value="1">
   <label>Review Expertise:</label>
   <label>
-    <input type="radio" name="reviewer_experties" ng-model="reviewer_experties" ng-value="Not_familiar">
+    <input type="radio" name="reviewer_experties" ng-model="review.rev_Exp" ng-value="Not_familiar">
     Not_familiar
   </label><br/> <label>
-    <input type="radio" name="reviewer_experties" ng-model="reviewer_experties" ng-value="Familiar">
+    <input type="radio" name="reviewer_experties" ng-model="review.revExp" ng-value="Familiar">
     Familiar
   </label><br/> <label>
-    <input type="radio" name="reviewer_experties"  ng-model="reviewer_experties" ng-value="Intermediate">
+    <input type="radio" name="reviewer_experties"  ng-model="review.rev_Exp" ng-value="Intermediate">
     Intermediate
   </label><br/> <label>
-    <input type="radio" name="reviewer_experties" ng-model="reviewer_experties" ng-value="advanced">
+    <input type="radio" name="reviewer_experties" ng-model="review.rev_Exp" ng-value="advanced">
     Green
   </label><br/> <label>
-    <input type="radio" name="reviewer_experties" ng-model="reviewer_experties" ng-value="Expert">
+    <input type="radio" name="reviewer_experties" ng-model="review.rev_Exp" ng-value="Expert">
     Expert
   </label><br>
   <label>Overall Evaluation:</label>
   <label>
-    <input type="radio" name="overall_evaluation" ng-model="review.revExp" ng-value="Not_familiar">
+    <input type="radio" name="overall_evaluation" ng-model="review.over_Eval" ng-value="Strongly Reject">
     Strongly Reject
   </label><br/> <label>
-    <input type="radio" name="overall_evaluation" ng-model="review.revExp" ng-value="Familiar">
+    <input type="radio" name="overall_evaluation" ng-model="review.over_Eval" ng-value="Reject">
     Reject
   </label><br/> <label>
-    <input type="radio" name="overall_evaluation" ng-model="review.revExp" ng-value="Intermediate">
+    <input type="radio" name="overall_evaluation" ng-model="review.over_Eval" ng-value="Intermediate">
     Intermediate
   </label><br/> <label>
-    <input type="radio" name="overall_evaluation" ng-model="review.revExp" ng-value="advanced">
+    <input type="radio" name="overall_evaluation" ng-model="review.over_Eval" ng-value="Somewhat Accept">
     Somewhat Accept
   </label><br/> <label>
-    <input type="radio" name="overall_evaluation" ng-model="review.revExp" ng-value="Expert">
+    <input type="radio" name="overall_evaluation" ng-model="review.over_Eval" ng-value="Strongly Accept">
     Strongly Accept
   </label><br>
   <label>Summary(limited to 100 characters):</label>
@@ -62,7 +62,7 @@ Choose expertise:
   <label>Major Strong Points(limited to 100 characters):</label>
   <textarea ng-model="review.major_strong_points" placeholder="Enter Major strong points"></textarea><br>
   <label>Major Week Points(limited to 100 characters):</label>
-  <textarea ng-model="review.major_week_points"  placeholder="Enter Major week points"></textarea><br>
+  <textarea ng-model="review.major_weak_points"  placeholder="Enter Major week points"></textarea><br>
   <label>Detailed Comments(limited to 100 characters):</label>
   <textarea ng-model="review.detailed_comments"  placeholder="Enter detailed comments"></textarea><br>
   <button type="submit" class="btn btn-primary" ng-click="submitReview()">Submit</button>

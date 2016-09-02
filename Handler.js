@@ -16,7 +16,9 @@ var express = require('express'),
 router = express.Router(),
 methodOverride = require('method-override'); //used to manipulate POST
 router.use(busboy());
+router.use(bodyParser.json());
 router.use(express.static(path.join(__dirname, 'public')));
+
 
 //Add Schemas Here:
 var autoIncrement = require('mongoose-auto-increment');
@@ -465,6 +467,36 @@ console.log("We are inside the authenticate function");
     }
 
 
+// Assign a Reviewer for a submission
+function submitReview(req,res){
+  console.log("submitting Review...");
+  if (!req.body.summary) {
+    console.log("No review summary");
+    res.json({success: false, msg: 'Please write review summary.'});
+  }
+  else {
+    var newReview = new Review({
+      _id:"1",//req.body._id,
+      rvExp:"1",//req.body.rev_Exp,
+      ovrEval:"2",//req.body.over_Eval,
+      summary:req.body.summary,
+      major_strong_points: req.body.major_strong_points,
+      major_weak_points :req.body.major_weak_points,
+      detailed_comments:req.body.detailed_comments
+    });
+    // update the review
+      Review.updateReviewById(newReview,function(err) {
+      console.log("Trying to update data to db...");
+      if (err) {
+        console.log("Error occurred!!Failed to update data...");
+        return res.json({success: false, msg: 'error updating'});
+      }
+      console.log("updating data was Successful...");
+      res.json({success: true, msg: 'Successful review.'});
+    });
+  }
+}
+
 
 
 // connect the api routes under /api/*
@@ -483,6 +515,7 @@ exports.getAllSubmissions=getAllSubmissions;
 exports.withdrawSubmissionById=withdrawSubmissionById;
 exports.getAllSubmittedUsers=getAllSubmittedUsers;
 exports.assignReviewer=assignReviewer;
+exports.submitReview=submitReview;
 
 /*data: JSON.stringify({
   'name': "Adnan",

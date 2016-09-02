@@ -11,20 +11,20 @@ angular.module('myApp.reviewer', ['ngRoute']).controller('ReviewerCtrl', [
     // {name:"Expert",id:5,isDefault:false}];
     // $scope.currentExpertise = {};
 
-//Add a new Review from my account
-// $scope.submitReview = function() {
-//   console.log("inside submitReview")
-//   $http({
-//     url: '/submitReview',
-//     method: "POST",
-//     data: $scope.review
-//   }, {
-//     headers: {
-//       "Content-Type": "application/json"
-//     }
-//   }).success(function(data, status, headers, config) {
-//   });
-// }
+//Update the Review with comments 
+$scope.submitReview = function() {
+  console.log("inside submitReview")
+  $http({
+    url: '/submitReview',
+    method: "POST",
+    data: $scope.review
+  }, {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  }).success(function(data, status, headers, config) {
+  });
+}
 
 //Get Submission By Id
 $scope.getSubmissionById = function() {
