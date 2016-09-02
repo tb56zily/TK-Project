@@ -20,7 +20,7 @@
   <option value="Rhineland">Rhineland</option>
   <option value="Berlin">Berlin</option>
       </select><br>
-      
+
       <label>City</label><select ng-model="user.city">
   <option value="Darmstadt">Darmstadt</option>
   <option value="Dieburg">Dieburg</option>
@@ -28,17 +28,22 @@
   <option value="Gros Umstadt">Gros Umstadt</option>
   <option value="Heidelberg">Heidelberg</option>
       </select><br>
-      
-   <h2>Change Password</h2>
-	    <label>oldPassword</label><input type="password" ng-model="user.password" placeholder="old password" /><br>
-	    <label>New Password</label><input type="password" ng-model="user.password" placeholder="New password" /><br>
-        <label>Confirm Password</label><input type="password" placeholder="New Password" /><br>   		
-        
-        <button type="submit" class="btn btn-primary" ng-click="Save()">Save</button>
+
+        <button type="submit" class="btn btn-primary" ng-click="editProfile()">UpdateProfile</button>
         <button type="submit" class="btn btn-primary" ng-click="cancel()">Cancel</button>
-        
-        	
 		</form>
+
+	<form method="post">
+		<h2>Change Password</h2>
+			 <label>oldPassword</label><input type="password" ng-model="userPswd.password" placeholder="old password" /><br>
+			 <label>New Password</label><input type="password" ng-model="userPswd.password" placeholder="New password" /><br>
+				 <label>Confirm Password</label><input type="password" placeholder="New Password" /><br>
+				 <button type="submit" class="btn btn-primary" ng-click="changePassword()">Change</button>
+				 <button type="submit" class="btn btn-primary" ng-click="cancel()">Cancel</button>
+		</form>
+
+
+
 	</body>
-	
+
 </html>

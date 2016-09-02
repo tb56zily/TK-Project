@@ -12,7 +12,7 @@ angular.module('myApp', [
   'myApp.author',
   'myApp.chair',
   'myApp.reviewer',
-
+  'myApp.myAccount',
   'myApp.version'
 ]).
 config(['$locationProvider', '$routeProvider','$httpProvider','localStorageServiceProvider', function($locationProvider, $routeProvider, $httpProvider,localStorageServiceProvider) {
@@ -70,6 +70,10 @@ config(['$locationProvider', '$routeProvider','$httpProvider','localStorageServi
   .when('/users', {
     templateUrl: 'chair/allUsers.html',
     controller: 'ChairCtrl'
+  })
+  .when('/editProfile', {
+    templateUrl: '/my account/editProfile.html',
+    controller: 'myAccountCtrl'
   })
   .otherwise('/view1');
 

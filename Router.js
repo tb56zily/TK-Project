@@ -107,6 +107,14 @@ var requestHandler = require("./Handler");
      app.post('/submitReview',function(req,res){
      requestHandler.submitReview(req,res);
      });
+
+     app.post('/changePswd',function(req,res){
+     requestHandler.changePswd(req,res);
+     });
+
+     app.post('/editProfile',function(req,res){
+     requestHandler.editProfile(req,res);
+     });
   }
 
 	//console.log("About to route a request for " + pathname);

@@ -498,7 +498,6 @@ function submitReview(req,res){
 }
 
 
-
 // connect the api routes under /api/*
 exports.homepage=home;
 exports.signup=signup;
@@ -516,6 +515,8 @@ exports.withdrawSubmissionById=withdrawSubmissionById;
 exports.getAllSubmittedUsers=getAllSubmittedUsers;
 exports.assignReviewer=assignReviewer;
 exports.submitReview=submitReview;
+exports.changePswd=changePswd;
+exports.editProfile=editProfile;
 
 /*data: JSON.stringify({
   'name': "Adnan",
